@@ -33,24 +33,21 @@ public class Hand {
 	private boolean Ace;
 	private static Deck dJoker = new Deck();
 
-	public Hand()
-	{
-		
+	public Hand() {
+
 	}
-	public void  AddCardToHand(Card c)
-	{
-		if (this.CardsInHand == null)
-		{
+
+	public void AddCardToHand(Card c) {
+		if (this.CardsInHand == null) {
 			CardsInHand = new ArrayList<Card>();
 		}
 		this.CardsInHand.add(c);
 	}
-	
-	public Card  GetCardFromHand(int location)
-	{
+
+	public Card GetCardFromHand(int location) {
 		return CardsInHand.get(location);
 	}
-	
+
 	public Hand(Deck d) {
 		ArrayList<Card> Import = new ArrayList<Card>();
 		for (int x = 0; x < 5; x++) {
@@ -58,9 +55,7 @@ public class Hand {
 		}
 		CardsInHand = Import;
 
-
 	}
-
 
 	public Hand(ArrayList<Card> setCards) {
 		this.CardsInHand = setCards;
@@ -74,14 +69,14 @@ public class Hand {
 		return BestCardsInHand;
 	}
 
-	public void setPlayerID(UUID playerID)
-	{
+	public void setPlayerID(UUID playerID) {
 		this.playerID = playerID;
 	}
-	public UUID getPlayerID()
-	{
+
+	public UUID getPlayerID() {
 		return playerID;
 	}
+
 	public void setBestHand(ArrayList<Card> BestHand) {
 		this.BestCardsInHand = BestHand;
 	}
@@ -89,7 +84,6 @@ public class Hand {
 	public int getHandStrength() {
 		return HandStrength;
 	}
-
 
 	public int getKicker() {
 		return Kicker;
@@ -108,7 +102,7 @@ public class Hand {
 	}
 
 	public static Hand EvalHand(ArrayList<Card> SeededHand) {
-		
+
 		Deck d = new Deck();
 		Hand h = new Hand(d);
 		h.CardsInHand = SeededHand;
@@ -205,20 +199,82 @@ public class Hand {
 							.getRank(), 0, 0);
 		}
 		// Four of a Kind
+		if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+				.get(eCardNo.FourthCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
+						.get(eCardNo.FifthCard.getCardNo()).getRank()) {
+			ScoreHand(eHandStrength.FourOfAKind,
+					CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+							.getRank(), 0, 0);
+		}
 
-		//TODO: You need to build the logic to figure out Four of a kind
+
 
 		// Full House
 		//TODO: You need to build the logic to figure out Full House
 
 		// Flush
-		//TODO: You need to build the logic to figure out Flush
+			if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
+			.get(eCardNo.SecondCard.getCardNo()).getSuit()
+			&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
+					.get(eCardNo.ThirdCard.getCardNo()).getSuit()
+			&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
+					.get(eCardNo.FourthCard.getCardNo()).getSuit()
+			&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
+					.get(eCardNo.FifthCard.getCardNo()).getSuit()) {
+		Flush = true;
+	} else {
+		Flush = false;
+	}
 		
 		// Straight
-		//TODO: You need to build the logic to figure out Straight
+			 if (Ace) {
+				// Looks for Ace, King, Queen, Jack, 10
+				if (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == eRank.KING
+						&& CardsInHand.get(eCardNo.ThirdCard.getCardNo()).getRank() == eRank.QUEEN
+						&& CardsInHand.get(eCardNo.FourthCard.getCardNo())
+								.getRank() == eRank.JACK
+						&& CardsInHand.get(eCardNo.FifthCard.getCardNo()).getRank() == eRank.TEN) {
+					Straight = true;
+					// Looks for Ace, 2, 3, 4, 5
+				} else if (CardsInHand.get(eCardNo.FifthCard.getCardNo()).getRank() == eRank.TWO
+						&& CardsInHand.get(eCardNo.FourthCard.getCardNo())
+								.getRank() == eRank.THREE
+						&& CardsInHand.get(eCardNo.ThirdCard.getCardNo()).getRank() == eRank.FOUR
+						&& CardsInHand.get(eCardNo.SecondCard.getCardNo())
+								.getRank() == eRank.FIVE) {
+					Straight = true;
+				} else {
+					Straight = false;
+				}
+				// Looks for straight without Ace
+			} else if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+					.getRank() == CardsInHand.get(eCardNo.SecondCard.getCardNo())
+					.getRank().getRank() + 1
+					&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+							.getRank() == CardsInHand
+							.get(eCardNo.ThirdCard.getCardNo()).getRank().getRank() + 2
+					&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+							.getRank() == CardsInHand
+							.get(eCardNo.FourthCard.getCardNo()).getRank()
+							.getRank() + 3
+					&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+							.getRank() == CardsInHand
+							.get(eCardNo.FifthCard.getCardNo()).getRank().getRank() + 4) {
+				Straight = true;
+			} else {
+				Straight = false;
+			}
 
 		// Three of a Kind
 		//TODO: You need to build the logic to figure out Three of a Kind
+			 if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+						.get(eCardNo.ThirdCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
+								.get(eCardNo.FourthCard.getCardNo()).getRank()) {
+					ScoreHand(eHandStrength.ThreeOfAKind,
+							CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+									.getRank(), 0, 0);
+			 }
+
 		
 		// Two Pair
 		//TODO: You need to build the logic to figure out Two Pair
@@ -226,6 +282,13 @@ public class Hand {
 
 		// Pair
 		//TODO: You need to build the logic to figure out Pair
+			 if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+						.get(eCardNo.SecondCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
+								.get(eCardNo.ThirdCard.getCardNo()).getRank()) {
+					ScoreHand(eHandStrength.Pair,
+							CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+									.getRank(), 0, 0);
+			 }
 
 		// High Card
 		//	I'll give you this one :)
@@ -237,8 +300,6 @@ public class Hand {
 							.getRank());
 		}
 	}
-
-
 
 	private void ScoreHand(eHandStrength hST, int HiHand, int LoHand, int Kicker) {
 		this.HandStrength = hST.getHandStrength();
