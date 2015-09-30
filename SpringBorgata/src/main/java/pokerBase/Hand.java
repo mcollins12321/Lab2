@@ -201,7 +201,8 @@ public class Hand {
 		// Four of a Kind
 		if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
 				.get(eCardNo.FourthCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
-						.get(eCardNo.FifthCard.getCardNo()).getRank()) {
+						.get(eCardNo.FifthCard.getCardNo()).getRank() || (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == CardsInHand
+				.get(eCardNo.FifthCard.getCardNo()).getRank())) {
 			ScoreHand(eHandStrength.FourOfAKind,
 					CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
 							.getRank(), 0, 0);
@@ -224,57 +225,18 @@ public class Hand {
 		}
 
 		// Flush
-			if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
-			.get(eCardNo.SecondCard.getCardNo()).getSuit()
-			&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
-					.get(eCardNo.ThirdCard.getCardNo()).getSuit()
-			&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
-					.get(eCardNo.FourthCard.getCardNo()).getSuit()
-			&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getSuit() == CardsInHand
-					.get(eCardNo.FifthCard.getCardNo()).getSuit()) {
-		Flush = true;
-	} else {
-		Flush = false;
+			if (Flush==true) {
+				ScoreHand(eHandStrength.Flush,
+						CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+								.getRank(), 0, 0);
 	}
 		
 		// Straight
-			 if (Ace) {
-				// Looks for Ace, King, Queen, Jack, 10
-				if (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == eRank.KING
-						&& CardsInHand.get(eCardNo.ThirdCard.getCardNo()).getRank() == eRank.QUEEN
-						&& CardsInHand.get(eCardNo.FourthCard.getCardNo())
-								.getRank() == eRank.JACK
-						&& CardsInHand.get(eCardNo.FifthCard.getCardNo()).getRank() == eRank.TEN) {
-					Straight = true;
-					// Looks for Ace, 2, 3, 4, 5
-				} else if (CardsInHand.get(eCardNo.FifthCard.getCardNo()).getRank() == eRank.TWO
-						&& CardsInHand.get(eCardNo.FourthCard.getCardNo())
-								.getRank() == eRank.THREE
-						&& CardsInHand.get(eCardNo.ThirdCard.getCardNo()).getRank() == eRank.FOUR
-						&& CardsInHand.get(eCardNo.SecondCard.getCardNo())
-								.getRank() == eRank.FIVE) {
-					Straight = true;
-				} else {
-					Straight = false;
-				}
-				// Looks for straight without Ace
-			} else if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
-					.getRank() == CardsInHand.get(eCardNo.SecondCard.getCardNo())
-					.getRank().getRank() + 1
-					&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
-							.getRank() == CardsInHand
-							.get(eCardNo.ThirdCard.getCardNo()).getRank().getRank() + 2
-					&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
-							.getRank() == CardsInHand
-							.get(eCardNo.FourthCard.getCardNo()).getRank()
-							.getRank() + 3
-					&& CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
-							.getRank() == CardsInHand
-							.get(eCardNo.FifthCard.getCardNo()).getRank().getRank() + 4) {
-				Straight = true;
-			} else {
-				Straight = false;
-			}
+			 if(Straight=true){
+				 ScoreHand(eHandStrength.Straight,
+							CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
+									.getRank(), 0, 0);
+			 }
 
 		// Three of a Kind
 		
