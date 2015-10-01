@@ -133,7 +133,7 @@ public class Hand_Test {
 		straight.AddCardToHand(new Card(eSuit.HEARTS, eRank.NINE, false));
 		straight.AddCardToHand(new Card(eSuit.DIAMONDS, eRank.JACK, false));
 		straight.AddCardToHand(new Card(eSuit.CLUBS, eRank.QUEEN, false));
-		straight.AddCardToHand(new Card(eSuit.SPADES, eRank.KING, false));
+		straight.AddCardToHand(new Card(eSuit.SPADES, eRank.TEN, false));
 
 		straight.EvalHand();
 		//System.out.print(straight.getHandStrength());
@@ -184,7 +184,7 @@ public class Hand_Test {
 		highCard.AddCardToHand(new Card(eSuit.SPADES, eRank.ACE, false));
 		
 		highCard.EvalHand();
-		System.out.print(highCard.getHandStrength());
+		//System.out.print(highCard.getHandStrength());
 		assertTrue(highCard.getHandStrength() == 10); 
 	}
 
