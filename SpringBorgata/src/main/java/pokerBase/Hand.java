@@ -225,14 +225,14 @@ public class Hand {
 		}
 
 		// Flush
-		else if (Flush==true) {
+		else if (Flush) {
 				ScoreHand(eHandStrength.Flush,
 						CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
 								.getRank(), 0, 0);
 	}
 		
 		// Straight
-		else if(Straight=true){
+		else if(Straight){
 				 ScoreHand(eHandStrength.Straight,
 							CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
 									.getRank(), 0, 0);
