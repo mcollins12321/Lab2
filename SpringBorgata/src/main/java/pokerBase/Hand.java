@@ -199,7 +199,7 @@ public class Hand {
 							.getRank(), 0, 0);
 		}
 		// Four of a Kind
-		if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+		else if (CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
 				.get(eCardNo.FourthCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
 						.get(eCardNo.FifthCard.getCardNo()).getRank() || (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == CardsInHand
 				.get(eCardNo.FifthCard.getCardNo()).getRank())) {
@@ -212,7 +212,7 @@ public class Hand {
 
 		// Full House
 		
-		if (((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+		else if (((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
 				.get(eCardNo.ThirdCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
 						.get(eCardNo.FourthCard.getCardNo()).getRank()) && (CardsInHand.get(eCardNo.FourthCard.getCardNo()).getRank() == CardsInHand
 						.get(eCardNo.FifthCard.getCardNo()).getRank())) || ((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
@@ -225,14 +225,14 @@ public class Hand {
 		}
 
 		// Flush
-			if (Flush==true) {
+		else if (Flush==true) {
 				ScoreHand(eHandStrength.Flush,
 						CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
 								.getRank(), 0, 0);
 	}
 		
 		// Straight
-			 if(Straight=true){
+		else if(Straight=true){
 				 ScoreHand(eHandStrength.Straight,
 							CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank()
 									.getRank(), 0, 0);
@@ -240,7 +240,7 @@ public class Hand {
 
 		// Three of a Kind
 		
-			 if (((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+		else if (((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
 						.get(eCardNo.ThirdCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
 								.get(eCardNo.FourthCard.getCardNo()).getRank()) || (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == CardsInHand
 						.get(eCardNo.FourthCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() != CardsInHand
@@ -254,7 +254,7 @@ public class Hand {
 		
 		// Two Pair
 		
-			 if ((((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+		else if ((((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
 						.get(eCardNo.SecondCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
 								.get(eCardNo.ThirdCard.getCardNo()).getRank()) || (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == CardsInHand
 						.get(eCardNo.ThirdCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() != CardsInHand
@@ -270,7 +270,7 @@ public class Hand {
 
 		// Pair
 		
-			 if (((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
+		else if (((CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() == CardsInHand
 						.get(eCardNo.SecondCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.FirstCard.getCardNo()).getRank() != CardsInHand
 								.get(eCardNo.ThirdCard.getCardNo()).getRank()) || (CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() == CardsInHand
 						.get(eCardNo.ThirdCard.getCardNo()).getRank() && CardsInHand.get(eCardNo.SecondCard.getCardNo()).getRank() != CardsInHand
